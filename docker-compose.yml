@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  flaskapp:
+    image: realestate
+    build: ./flaskapp-docker
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    network_mode: host
