@@ -22,7 +22,7 @@ def returndata():
 
 @app.route('/properties', methods=["GET"])
 def testget():
-    return returndata, 200
+    return returndata(), 200
 
 
 @app.route('/properties', methods=["PUT"])
