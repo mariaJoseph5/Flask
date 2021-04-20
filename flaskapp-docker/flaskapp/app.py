@@ -11,14 +11,18 @@ cors = CORS(app, resources={
         "origins": "*"
     }
 })
-@app.route('/properties', methods=["GET"])
-def testget():
+
+def returndata():
     data = []
     with open('REAL_ESTATE.csv','r') as f:
         reader = csv.DictReader(f)
         for records in reader:
             data.append(records)
-    return json.dumps(data), 200
+        return json.dumps(data)
+
+@app.route('/properties', methods=["GET"])
+def testget():
+    return returndata, 200
 
 
 @app.route('/properties', methods=["PUT"])
@@ -40,7 +44,7 @@ def testput():
         with open('REAL_ESTATE.csv', 'a', newline='\n') as file:
             writer = csv.writer(file)
             writer.writerow(csvData)
-        return testget(), 201
+        return data, 201
 
 @app.route('/properties/<string:propertyId>', methods=["DELETE"])
 def testdelete(propertyId):
@@ -58,7 +62,7 @@ def testdelete(propertyId):
     if isFound:
         os.remove('REAL_ESTATE.csv')
         os.rename('NEW_FILE.csv', 'REAL_ESTATE.csv')
-        return testget(), 204
+        return jsonify({"deleted": True}), 204
     else:
         return jsonify({"error": "Property not found"}), 404
 
