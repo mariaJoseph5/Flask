@@ -2,9 +2,15 @@ from flask import Flask, request, jsonify, json
 import csv
 import uuid
 import os
-
+from flask_cors import CORS
 app = Flask(__name__)
 
+CORS(app)
+cors = CORS(app, resources={
+    r"/*": {
+        "origins": "*"
+    }
+})
 @app.route('/properties', methods=["GET"])
 def testget():
     data = []

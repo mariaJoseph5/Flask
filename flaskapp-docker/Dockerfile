@@ -17,7 +17,7 @@ RUN apt-get install gunicorn3 -y
 COPY requirements.txt .
 COPY flaskapp /opt/
 RUN pip3 install -r requirements.txt
-
+RUN pip3 install -U flask-cors 
 WORKDIR /opt/
 COPY . /opt/
 
