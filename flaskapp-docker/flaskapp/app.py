@@ -29,7 +29,7 @@ def testget():
 def testput():
     data = request.get_json()
     isFound = False
-    isTypeMismatch = not(data['propertyName'] and data['area'] and data['price'] and data['price'] > 0 and data['gym'] and data['gym'] >= 0 and data['pool'] and data['pool'] >= 0 and data['playArea'] and data['playArea'] > 0 and data['clubHouse'] and data['clubHouse'] >= 0 and data['areaSize'] and data['areaSize'] >= 0)
+    isTypeMismatch = not(data['propertyName'] and data['area'] and data['price'] and data['price'] > 0 and data['gym'] and data['gym'] >= 0 and data['pool'] and data['pool'] >= 0 and data['playArea'] and data['playArea'] >= 0 and data['clubHouse'] and data['clubHouse'] >= 0 and data['areaSize'] and data['areaSize'] > 0)
     with open('REAL_ESTATE.csv', 'r') as file:
         reader = csv.DictReader(file)
         for records in reader:
